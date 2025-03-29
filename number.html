@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h4>471810</h4>
+    <div id="debug"></div>
+    <script>
+        const isPrime = n => {
+            if (n < 2) return false;
+            for (let i = 2; i <= Math.sqrt(n); i++) 
+                if (n % i === 0) return false;
+            return true;
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const N = parseInt([...params][0]?.[1]);
+
+        let count = 0;
+        if (N >= 2) 
+            for (let i = 2; i <= N; i++) 
+                if (isPrime(i)) count++;
+
+        document.title = `Простых чисел: ${count}`;
+    </script>
+</body>
+</html>
