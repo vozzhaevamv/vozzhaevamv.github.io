@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Playlist</title>
+</head>
+<body>
+    <h1>Lindsey Stirling</h1>
+    
+    <label for="audioSelect">Choose a Track:</label>
+    <select id="audioSelect">
+        <option value="01 - Underground.mp3">Underground 01</option>
+        <option value="02 - Artemis.mp3">Artemis 02</option>
+        <option value="03 - Til The Light Goes Out.mp3">Til The Light Goes Out 03</option>
+        <option value="04 - Foreverglow.mp3">Foreverglow 04</option>
+ 
+    </select>
+
+    <audio id="au" controls></audio>
+    <button id="bt" onclick="downloadAndPlay()">Download and Play</button>
+    
+    <script>
+        async function downloadAndPlay() {
+            let select = document.getElementById('audioSelect');
+            let selectedFile = select.value;
+            
+            let response = await fetch(selectedFile);
+            let blob = await response.blob();
+            let reader = new FileReader();
+
+            reader.onload = function (e) {
+                let audio = document.getElementById('au');
+                audio.src = e.target.result;
+                audio.play();
+            };
+
+            reader.readAsDataURL(blob);
+        }
+    </script>
+</body>
+</html>
+</body>
+</html>
