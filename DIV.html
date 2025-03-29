@@ -2,20 +2,30 @@
 <html>
 <head>
     <title>Страница HTML5</title>
+    <style>
+        div {
+            border: 1px solid #ccc;
+            margin: 2px;
+            padding: 3px;
+            height: 10px;
+        }
+    </style>
 </head>
 <body>
     <h4>471810</h4>
-    <button id="bt">Generate</button>
+    <button id="bt">Создать элементы</button>
     <script>
         document.getElementById('bt').addEventListener('click', () => {
             const article = document.createElement('article');
-            document.body.prepend(article);
+            document.body.prepend(article); // Добавляем ARTICLE первым в body
             
-            for(let i = 0; i < 1000; i++) {
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < 1000; i++) {
                 const div = document.createElement('div');
                 div.id = `i${i}`;
-                article.appendChild(div);
+                fragment.appendChild(div);
             }
+            article.appendChild(fragment);
         });
     </script>
 </body>
